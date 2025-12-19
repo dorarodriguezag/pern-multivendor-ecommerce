@@ -33,3 +33,10 @@
     "tailwindcss": "^4"
   }
 }
+
+
+{
+  "overrides": {
+    "serialize-error-cjs": "0.2.0"
+  }
+}
