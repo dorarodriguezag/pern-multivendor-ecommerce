@@ -3,11 +3,9 @@ import { inngest } from "../../../inngest/client";
 import { syncUserCreation, syncUserDeletion, syncUserUpdation } from "@/inngest/functions";
 
 export const runtime = "nodejs";
-export const dynamic = "force-dynamic";
-
 
 // Create an API that serves zero functions
-export const { GET, POST} = serve({
+export const { GET, POST, PUT } = serve({
   client: inngest,
   functions: [
     syncUserCreation,
