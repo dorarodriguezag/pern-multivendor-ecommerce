@@ -1,12 +1,18 @@
+console.log("🟢 [FUNCTIONS] functions.ts loaded");
+
 import { inngest } from "./client";
 import { getPrisma } from "../lib/prisma";
+
+console.log("🟢 [FUNCTIONS] imports resolved");
 
 // Inngest Function to save user data to a database
 export const syncUserCreation = inngest.createFunction(
   {id: "sync-user-create" },
   { event: "clerk/user.created"},
   async ({ event }) => {
+    console.log("🟢 [FUNCTION RUN] syncUserCreation triggered")
     const prisma = getPrisma();
+    console.log("🟢 [PRISMA] client obtained");
     const {data} = event
     await prisma.user.create({
         data: {
