@@ -1,4 +1,4 @@
-import { getPrisma } from "../lib/prisma";
+import { getPrisma } from "@/lib/prisma";
 import authSeller from "@/middlewares/authSeller";
 import { getAuth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";

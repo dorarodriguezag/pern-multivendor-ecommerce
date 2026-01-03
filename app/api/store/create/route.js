@@ -1,4 +1,4 @@
-import { getPrisma } from "../lib/prisma";
+import { getPrisma } from "@/lib/prisma";
 import { getAuth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 import imageKit from "@/configs/imageKit";

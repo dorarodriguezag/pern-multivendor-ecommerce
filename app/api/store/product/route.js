@@ -2,7 +2,7 @@ import { getAuth } from "@clerk/nextjs/server";
 import { authSeller } from "@/middlewares/authSeller";
 import { NextResponse } from "next/server";
 import imageKit from "@/configs/imageKit";
-import { getPrisma } from "../lib/prisma";
+import { getPrisma } from "@/lib/prisma";
 
 
 
