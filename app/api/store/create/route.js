@@ -1,11 +1,12 @@
 import { getPrisma } from "../lib/prisma";
 import { getAuth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
-import imagekit from "@/lib/imagekit";
+import imageKit from "@/configs/imageKit";
 
 // create the store
 export async function POST(request) { 
     try {
+        const prisma = getPrisma();
         const { userId } = getAuth(request)
         // Get the data from the form
         const formData = await request.formData()
@@ -23,7 +24,6 @@ export async function POST(request) {
         }
 
         // check if user have already a store
-        const prisma = getPrisma();
         const store = await prisma.store.findFirst({
             where: { userId: userId }
         })
@@ -44,7 +44,7 @@ export async function POST(request) {
 
         // image upload to imagekit
         const buffer = Buffer.from(await image.arrayBuffer());
-        const response = await imagekit.upload({
+        const response = await imageKit.upload({
             file: buffer,
             fileName: image.name,
             folder: "logos"     

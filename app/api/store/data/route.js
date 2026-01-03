@@ -7,6 +7,7 @@ import { NextResponse } from "next/server";
 
 export async function GET(request) {
     try {  
+        const prisma = getPrisma();
         // Get store username from query params
         const { searchParams } = new URL(request.url);
         const username = searchParams.get('username').toLowerCase();
@@ -16,7 +17,6 @@ export async function GET(request) {
         }
 
         // Get store info and inStock products with ratings
-        const prisma = getPrisma();
         const store = await prisma.store.findUnique({
             where: { username, isActive: true },
             include: {

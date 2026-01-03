@@ -7,13 +7,14 @@ import { NextResponse } from "next/server";
 // Auth Seller
 export async function GET(request) {
     try {
+        const prisma = getPrisma();
+
         const { userId } = getAuth(request)
         const isSeller = await authSeller(userId)
 
         if(isSeller){
             return NextResponse.json({error: "not authorized"}, {status: 401})
         }
-        const prisma = getPrisma();
         const storeInfo = await prisma.store.findFirst({
             where: { userId }
         })

@@ -1,7 +1,7 @@
 import { getAuth } from "@clerk/nextjs/server"; 
 import { authSeller } from "@/middlewares/authSeller";
 import { NextResponse } from "next/server";
-import imagekit from "@/lib/imagekit";
+import imageKit from "@/configs/imageKit";
 import { getPrisma } from "../lib/prisma";
 
 
@@ -9,6 +9,7 @@ import { getPrisma } from "../lib/prisma";
 // Add a new product
 export async function POST(request) {
   try {
+        const prisma = getPrisma();
         const { userId } = getAuth(request);
         const storeId = await authSeller(userId);
 
@@ -30,12 +31,12 @@ export async function POST(request) {
 
         const imagesUrl = await Promise.all(images.map(async (image) => {
             const buffer = Buffer.from(await image.arrayBuffer());
-            const response = await imagekit.upload({
+            const response = await imageKit.upload({
                 file: buffer,
                 fileName: image.name,
                 folder: "products",
             })
-            const url = imagekit.url({
+            const url = imageKit.url({
                 path: response.filePath,
                 transformation: [
                     { quality: 'auto' },
@@ -46,7 +47,6 @@ export async function POST(request) {
             return url;
         }))
 
-        const prisma = getPrisma();
         const newStore = await prisma.product.create({
             data: {
                 name,

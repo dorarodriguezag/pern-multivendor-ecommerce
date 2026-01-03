@@ -7,6 +7,7 @@ import { NextResponse } from "next/server";
 // toggle stock of a product
 export async function POST(request) {
     try {
+        const prisma = getPrisma();
         const { userId } = getAuth(request)
         const { productId } = await request.json()
 
@@ -21,7 +22,6 @@ export async function POST(request) {
         }
 
         // check if product exists
-        const prisma = getPrisma();
         const product = await prisma.product.findFirst({
             where: {
                 id: productId,
