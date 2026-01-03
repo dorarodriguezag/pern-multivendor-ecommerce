@@ -1,5 +1,7 @@
+import { getPrisma } from "../lib/prisma";
 import { getAuth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
+import imagekit from "@/lib/imagekit";
 
 // create the store
 export async function POST(request) { 
@@ -21,6 +23,7 @@ export async function POST(request) {
         }
 
         // check if user have already a store
+        const prisma = getPrisma();
         const store = await prisma.store.findFirst({
             where: { userId: userId }
         })

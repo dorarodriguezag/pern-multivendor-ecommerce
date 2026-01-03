@@ -1,3 +1,4 @@
+import { getPrisma } from "../lib/prisma";
 import authSeller from "@/middlewares/authSeller";
 import { getAuth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
@@ -20,6 +21,7 @@ export async function POST(request) {
         }
 
         // check if product exists
+        const prisma = getPrisma();
         const product = await prisma.product.findFirst({
             where: {
                 id: productId,

@@ -1,5 +1,10 @@
 import { getAuth } from "@clerk/nextjs/server"; 
 import { authSeller } from "@/middlewares/authSeller";
+import { NextResponse } from "next/server";
+import imagekit from "@/lib/imagekit";
+import { getPrisma } from "../lib/prisma";
+
+
 
 // Add a new product
 export async function POST(request) {
@@ -41,7 +46,8 @@ export async function POST(request) {
             return url;
         }))
 
-         const newStore = await prisma.product.create({
+        const prisma = getPrisma();
+        const newStore = await prisma.product.create({
             data: {
                 name,
                 description,
