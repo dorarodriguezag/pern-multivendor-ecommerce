@@ -44,13 +44,14 @@ export async function POST(request) {
 
         // image upload to imagekit
         const buffer = Buffer.from(await image.arrayBuffer());
+        
         const response = await imageKit.upload({
             file: buffer,
             fileName: image.name,
             folder: "logos"     
         })
 
-        const optimizedImage = imagekit.url({
+        const optimizedImage = imageKit.url({
             path: response.filePath,
             transformation: [
                 {quality: 'auto'},
@@ -94,6 +95,7 @@ export async function GET(request) {
     try {
 
         const { userId } = getAuth(request)
+        const prisma = getPrisma();
 
         // check if user have already a store
         const store = await prisma.store.findFirst({
