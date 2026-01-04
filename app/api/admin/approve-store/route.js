@@ -1,11 +1,13 @@
 import authAdmin from "@/middlewares/authAdmin";
 import { getAuth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
+import { getPrisma } from "@/lib/prisma";
 
 
 // Approve Seller
 export async function POST(request) {
     try {
+        const prisma = getPrisma();
         const { userId } = getAuth(request)
         const isAdmin = await authAdmin(userId)
 
