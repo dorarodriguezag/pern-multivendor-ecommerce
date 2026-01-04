@@ -15,6 +15,8 @@ const authSeller = async (userId) => {
             return false
         }
     } catch (error) {
+        console.error(error);
+        return false
 
     }
 }
