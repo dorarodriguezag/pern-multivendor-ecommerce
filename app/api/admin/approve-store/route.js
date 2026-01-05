@@ -41,6 +41,7 @@ export async function POST(request) {
 // Get all pending and rejected stores
 export async function GET(request) {
     try {
+        const prisma = getPrisma();
         const { userId } = getAuth(request)
         const isAdmin = await authAdmin(userId)
 
@@ -58,6 +59,6 @@ export async function GET(request) {
 
     }   catch (error) {
         console.error(error);
-
+        return NextResponse.json({error: error.code || error.message}, { status: 400 })
     }
 }
