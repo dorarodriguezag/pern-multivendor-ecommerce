@@ -26,7 +26,7 @@ export async function POST(request) {
                 id: storeId }
             })
 
-        if(!storeId){
+        if(!store){
             return NextResponse.json({error: "store not found"}, {status: 400})
         }
         
