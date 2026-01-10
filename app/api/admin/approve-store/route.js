@@ -50,8 +50,10 @@ export async function GET(request) {
         }
         const stores = await prisma.store.findMany({
             where: {
-                status: { in: ["pending", "rejected"] },
-                include: { user: true }
+                status: { in: ["pending", "rejected"] }
+            },
+            include: {  
+                user: true 
             }
         })
 
