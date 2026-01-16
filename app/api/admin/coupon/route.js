@@ -17,9 +17,38 @@ export async function POST(request) {
         const { coupon } = await request.json()
         coupon.code = coupon.code.toUpperCase()
 
-        await prisma.coupon.create({dara: coupon})
+        await prisma.coupon.create({data: coupon})
 
         return NextResponse.json({ message: "Coupon added successfully"})
+
+    } catch (error) {
+        console.error(error);
+        return NextResponse.json({error: error.code || error.message}, { status: 400 })
+    }
+}
+
+
+
+
+// Delete coupon /api/coupon?id=couponId
+
+export async function DELETE(request) {
+    try {
+        const prisma = getPrisma();
+        const { userId } = getAuth(request)
+        const isAdmin = await authAdmin(userId)
+        
+        if(!isAdmin) {
+            return NextResponse.json({error: "not authorized"}, {status: 401})
+        }
+
+        const { searchParams } = await request.nextUrl;
+        const code = searchParams.get('code')
+
+        await prisma.coupon.delete(
+            { where: { code } })
+
+        return NextResponse.json({ message: "Coupon deleted successfully"})
 
     } catch (error) {
         console.error(error);
