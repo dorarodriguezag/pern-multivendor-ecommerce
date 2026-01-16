@@ -2,6 +2,7 @@ import authAdmin from "@/middlewares/authAdmin";
 import { getAuth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 import { getPrisma } from "@/lib/prisma";
+import { inngest } from "@/inngest/client";
 
 //Add new coupon
 export async function POST(request) {
