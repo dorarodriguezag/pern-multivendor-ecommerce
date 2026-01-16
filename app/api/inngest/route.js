@@ -1,12 +1,8 @@
 export const runtime = "nodejs";
 
-console.log("🔥 [ROUTE] /api/inngest route file loaded");
-
 import { serve } from "inngest/next";
 import { inngest } from "../../../inngest/client";
-import { syncUserCreation, syncUserDeletion, syncUserUpdation } from "@/inngest/functions";
-
-console.log("🔥 [ROUTE] imports resolved");
+import { deleteCouponOnExpiry, syncUserCreation, syncUserDeletion, syncUserUpdation } from "@/inngest/functions";
 
 // Create an API that serves zero functions
 export const { GET, POST, PUT } = serve({
@@ -15,7 +11,6 @@ export const { GET, POST, PUT } = serve({
     syncUserCreation,
     syncUserUpdation,
     syncUserDeletion,    /* your functions will be passed here later! */
+    deleteCouponOnExpiry,
   ],
 });
-
-console.log("🔥 [ROUTE] serve() executed");
