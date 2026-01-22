@@ -113,6 +113,7 @@ Key dependencies used in this project:
 
 ## 🔧 Folder Structure <a name="folder_structure"></a>
 
+```bash
 GOCART/
 │
 ├── .next/ # Next.js build output
@@ -145,6 +146,7 @@ GOCART/
 ├── postcss.config.mjs # PostCSS configuration
 ├── LICENSE.md # Project license
 └── README.md # Project documentation
+```
 
 ## ⚙️ Installation <a name = "installation"></a>
 
