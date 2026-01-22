@@ -1,85 +1,232 @@
-<div align="center">
-  <h1><img src="https://gocartshop.in/favicon.ico" width="20" height="20" alt="GoCart Favicon">
-   GoCart</h1>
-  <p>
-    An open-source multi-vendor e-commerce platform built with Next.js and Tailwind CSS.
-  </p>
-  <p>
-    <a href="https://github.com/GreatStackDev/goCart/blob/main/LICENSE.md"><img src="https://img.shields.io/github/license/GreatStackDev/goCart?style=for-the-badge" alt="License"></a>
-    <a href="https://github.com/GreatStackDev/goCart/pulls"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=for-the-badge" alt="PRs Welcome"></a>
-    <a href="https://github.com/GreatStackDev/goCart/issues"><img src="https://img.shields.io/github/issues/GreatStackDev/goCart?style=for-the-badge" alt="GitHub issues"></a>
-  </p>
-</div>
+<h3 align="center"> 🛒 GoCart (Work in Progress)</h3>
 
----
+<p align="center">
+  A modern full-stack e-commerce application built with Next.js, Prisma, and Neon.<br/>
+  This project is currently under active development and not yet feature-complete.
+  <br>
+</p>
 
-## 📖 Table of Contents
+<p align="center">
+  <a href="https://pern-multivendor-ecommerce.vercel.app">
+    <img src="https://img.shields.io/badge/Live-Demo-brightgreen" alt="Live Demo">
+  </a>
+  <img src="https://img.shields.io/badge/Status-In%20Progress-yellow" alt="Project Status">
+  <img src="https://img.shields.io/badge/Next.js-000000?style=flat&logo=next.js&logoColor=white" alt="Next.js">
+  <img src="https://img.shields.io/badge/React-61DAFB?style=flat&logo=react&logoColor=black" alt="React">
+  <img src="https://img.shields.io/badge/Prisma-2D3748?style=flat&logo=prisma&logoColor=white" alt="Prisma">
+  <img src="https://img.shields.io/badge/Neon-00E5FF?style=flat" alt="Neon">
+  <img src="https://img.shields.io/badge/TailwindCSS-38B2AC?style=flat&logo=tailwind-css&logoColor=white" alt="Tailwind CSS">
+</p>
 
-- [✨ Features](#-features)
-- [🛠️ Tech Stack](#-tech-stack)
-- [🚀 Getting Started](#-getting-started)
-- [🤝 Contributing](#-contributing)
-- [📜 License](#-license)
+## 📝 Table of Contents
 
----
+- [About](#about)
+- [Getting Started](#getting_started)
+- [Current Status](#current_status)
+- [Features](#features)
+- [Tech Stack](#tech_stack)
+- [Prerequisites](#prerequisites)
+- [Dependencies Overview](#dependencies)
+- [Folder Structure](#folder_structure)
+- [Installation](#installation)
+- [Running the App](#running_app)
+- [Testing](#testing)
+- [Learning Goals](#learning_goals)
+- [Credits](#credits)
+- [License](#license)
 
-## Features
+## 🧐 About <a name="about"></a>
 
-- **Multi-Vendor Architecture:** Allows multiple vendors to register, manage their own products, and sell on a single platform.
-- **Customer-Facing Storefront:** A beautiful and responsive user interface for customers to browse and purchase products.
-- **Vendor Dashboards:** Dedicated dashboards for vendors to manage products, view sales analytics, and track orders.
-- **Admin Panel:** A comprehensive dashboard for platform administrators to oversee vendors, products, and commissions.
+GoCart is a **full-stack e-commerce application** built with **Next.js (App Router)** and a modern cloud-native stack.  
+The project focuses on scalable architecture, authentication, state management, and real-world e-commerce workflows.
 
-## 🛠️ Tech Stack <a name="-tech-stack"></a>
+⚠️ **Note:** This project is still in development. Features, structure, and APIs are subject to change.
 
-- **Framework:** Next.js
-- **Styling:** Tailwind CSS
-- **UI Components:** Lucide React for icons
+## 🏁 Getting Started <a name="getting_started"></a>
+
+Follow the steps below to run the project locally for development and experimentation.
+
+## 🚧 Current Status <a name="current_status"></a>
+
+- Core project setup complete
+- Database schema managed with Prisma
+- Authentication integrated with Clerk
+- Styling configured with Tailwind CSS
+- State management set up with Redux Toolkit
+
+❌ Products / checkout flow, payments (Stripe), and other features are still in progress.
+
+## 🚀 Features <a name="features"></a>
+
+### Implemented / In Progress
+
+- User authentication (Clerk)
+- Global state management (Redux Toolkit)
+- Database integration with Prisma + Neon
+- Responsive UI with Tailwind CSS
+- Image handling via ImageKit
+- Background jobs & workflows (Inngest)
+
+### Planned
+
+- Product catalog
+- Shopping cart & checkout
+- Order management
+- Admin dashboard
+- Analytics & reporting
+
+## 🧰 Tech Stack <a name="tech_stack"></a>
+
+- **Frontend:** Next.js 15, React 19, Tailwind CSS
+- **Backend:** Next.js App Router, Inngest
+- **Database:** Neon (PostgreSQL)
+- **ORM:** Prisma
+- **Auth:** Clerk
 - **State Management:** Redux Toolkit
+- **Media:** ImageKit
+- **Testing:** Cypress (E2E)
+- **Charts:** Recharts
 
-## 🚀 Getting Started <a name="-getting-started"></a>
+## ⚡ Prerequisites <a name="prerequisites"></a>
 
-First, install the dependencies. We recommend using `npm` for this project.
+- **Node.js** (v18+ recommended)
+- **npm**
+- **PostgreSQL database** (Neon recommended)
+- A **Clerk account** (authentication)
+- An **ImageKit account** (media uploads)
+- Git
+
+## 📦 Dependencies Overview <a name="dependencies"></a>
+
+Key dependencies used in this project:
+
+- next / react / react-dom Application framework
+- prisma / @prisma/client Database ORM
+- @neondatabase/serverless PostgreSQL hosting
+- @clerk/nextjs Authentication
+- @reduxjs/toolkit / react-redux State management
+- tailwindcss Utility-first styling
+- axios HTTP client
+- inngest Background jobs
+- imagekit Image hosting
+- cypress End-to-end testing
+
+## 🔧 Folder Structure <a name="folder_structure"></a>
+
+GOCART/
+│
+├── .next/ # Next.js build output
+├── .vs/ # Visual Studio configuration
+├── .vscode/ # VS Code workspace settings
+│
+├── app/ # Next.js App Router (routes, layouts, pages)
+├── assets/ # Static assets (images, icons, etc.)
+├── components/ # Reusable UI components
+├── configs/ # Application and service configurations
+├── cypress/ # End-to-end tests (Cypress)
+├── inngest/ # Inngest background jobs & workflows
+├── lib/ # Shared utilities, helpers, and services
+├── middlewares/ # Custom middleware logic
+├── prisma/ # Prisma schema and database setup
+│
+├── .env # Environment variables (ignored by git)
+├── .env.example # Example environment variables
+├── .gitignore # Git ignored files
+│
+├── CODE_OF_CONDUCT.md # Code of conduct
+├── CONTRIBUTING.md # Contribution guidelines
+├── cypress.config.js # Cypress configuration
+├── jsconfig.json # JavaScript/Path aliases config
+├── middleware.ts # Next.js middleware
+├── next-env.d.ts # Next.js TypeScript declarations
+├── next.config.mjs # Next.js configuration
+├── package.json # Project metadata & scripts
+├── package-lock.json # Dependency lock file
+├── postcss.config.mjs # PostCSS configuration
+├── LICENSE.md # Project license
+└── README.md # Project documentation
+
+## ⚙️ Installation <a name = "installation"></a>
+
+### Clone the repository
+
+1. Clone the repository
+
+```bash
+git clone https://github.com/dorarodriguezag/pern-multivendor-ecommerce.git
+cd pern-multivendor-ecommerce
+```
+
+2. Install dependencies
 
 ```bash
 npm install
 ```
 
-Then, run the development server:
+3. Create a .env file (see `.env.example`)
+
+```bash
+DATABASE_URL=your_neon_database_url
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_key
+CLERK_SECRET_KEY=your_secret
+IMAGEKIT_PUBLIC_KEY=your_key
+IMAGEKIT_PRIVATE_KEY=your_secret
+IMAGEKIT_URL_ENDPOINT=your_url
+```
+
+## ▶️ Running the App <a name = "running_app"></a>
+
+Development mode
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Production mode
 
-You can start editing the page by modifying `app/(public)/page.js`. The page auto-updates as you edit the file.
+```bash
+npm run build
+npm start
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Outfit](https://vercel.com/font), a new font family for Vercel.
+App runs on:
 
----
+```bash
+http://localhost:3000
+```
 
-## 🤝 Contributing <a name="-contributing"></a>
+## 🔐 Testing <a name = "testing"></a>
 
-We welcome contributions! Please see our [CONTRIBUTING.md](./CONTRIBUTING.md) for more details on how to get started.
+Open Cypress UI
 
----
+```bash
+npm run cypress:open
+```
 
-## 📜 License <a name="-license"></a>
+Run tests headlessly
+
+```bash
+npm run cypress:run
+```
+
+## 📚 Learning Goals <a name = "learning_goals"></a>
+
+- Advanced Next.js App Router patterns
+- Authentication in production-ready applications
+- Scalable database design with Prisma
+- State management in large React applications
+- E-commerce architecture
+- End-to-end testing with Cypress
+
+## 📘 Credits <a name = "credits"></a>
+
+This project is based on a starter template from:
+
+GreatStackDev – GoCart
+https://github.com/GreatStackDev/gocart
+
+This repository represents my own implementation and learning process.
+
+## 📜 License <a name="license"></a>
 
 This project is licensed under the MIT License. See the [LICENSE.md](./LICENSE.md) file for details.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
