@@ -22,9 +22,7 @@ export default function StoreManageProducts() {
         try {
             const token = await getToken()
 
-            const { data } = await axios.get('/api/store/product', { headers: { Authorization: `Bearer ${token}` } })
-            console.log(data);
-            
+            const { data } = await axios.get('/api/store/product', { headers: { Authorization: `Bearer ${token}` } })           
             setProducts(data.products.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)))
         } catch (error) {
             toast.error(error?.response?.data?.message || error.message)
