@@ -22,11 +22,6 @@ export async function POST(request) {
     }
 }
 
-import { getPrisma } from "@/lib/prisma";
-import { getAuth } from "@clerk/nextjs/server";
-import { NextResponse } from "next/server";
-
-
 
 // Get user cart 
 export async function GET(request) {
