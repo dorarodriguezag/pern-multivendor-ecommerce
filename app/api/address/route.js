@@ -13,8 +13,7 @@ export async function POST(request) {
 
         // Save the cart to user object
         const newAddress = await prisma.address.create({
-            data: address,
-            data: { cart }
+            data: address
         })
         return NextResponse.json({ newAddress,  message: "Address added succesfully" })
 

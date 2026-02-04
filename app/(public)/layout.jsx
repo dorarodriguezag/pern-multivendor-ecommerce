@@ -8,6 +8,7 @@ import { fetchProducts } from "@/lib/features/product/productSlice";
 import { useUser } from "@clerk/nextjs";
 import { useAuth } from "@clerk/clerk-react";
 import { fetchCart, uploadCart } from "@/lib/features/cart/cartSlice";
+import { fetchAddress } from "@/lib/features/address/addressSlice";
 
 export default function PublicLayout({ children }) {
 
@@ -30,6 +31,7 @@ export default function PublicLayout({ children }) {
     useEffect(() => {
         if (user) {
             dispatch(uploadCart({getToken}) );
+            dispatch(fetchAddress({getToken}) );
         }
     }, [cartItems]);
 
