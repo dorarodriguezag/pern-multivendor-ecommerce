@@ -23,13 +23,13 @@ export default function PublicLayout({ children }) {
 
     useEffect(() => {
         if (user) {
-            dispatch(fetchCart({getToken}) );
+            dispatch(fetchCart({getToken}));
         }
     }, [user]);
 
     useEffect(() => {
         if (user) {
-            dispatch(uploadCart({getToken }) );
+            dispatch(uploadCart({getToken}) );
         }
     }, [cartItems]);
 
