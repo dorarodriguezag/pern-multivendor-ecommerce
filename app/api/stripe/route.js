@@ -1,11 +1,11 @@
-import { getPrisma } from "@/lib/prisma";
+import prisma from "@/lib/prisma";
 import Stripe from "stripe";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 export async function POST(request) {
     try {
-        const prisma = getPrisma();
+        
         const body = await request.text()
         const sig = request.get('stripe-signature')
 

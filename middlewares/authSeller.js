@@ -1,10 +1,10 @@
-import { getPrisma } from "@/lib/prisma";
+import prisma from "@/lib/prisma";
 
 const authSeller = async (userId) => {
 
     
     try {
-        const prisma = getPrisma();
+        
         const user = await prisma.user.findUnique({
             where: { id: userId },
             include: { store: true },

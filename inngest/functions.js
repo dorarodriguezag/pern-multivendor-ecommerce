@@ -6,7 +6,7 @@ export const syncUserCreation = inngest.createFunction(
   {id: "sync-user-create" },
   { event: "clerk/user.created"},
   async ({ event }) => {
-    const prisma = getPrisma();
+    
     const {data} = event
     await prisma.user.create({
         data: {
@@ -25,7 +25,7 @@ export const syncUserUpdation = inngest.createFunction(
   { id: "sync-user-update" },
   { event: "clerk/user.updated"},
   async ({ event }) => {
-    const prisma = getPrisma();
+    
     const {data} = event
     await prisma.user.update({
         where: { id: data.id },
@@ -44,7 +44,7 @@ export const syncUserDeletion = inngest.createFunction(
   { id: "sync-user-delete" },
   { event: "clerk/user.deleted"},
   async ({ event }) => {
-    const prisma = getPrisma();
+    
     const {data} = event
     await prisma.user.delete({
         where: { id: data.id }
@@ -58,7 +58,7 @@ export const deleteCouponOnExpiry = inngest.createFunction(
   { id: "delete-coupon-on-expiry" },
   { event: "app/coupon.expired"},
   async ({ event, step }) => {
-    const prisma = getPrisma();
+    
     const {data} = event
     const expiryDate = new Date(data.expires_at)
     await step.sleepUntil('wait-for-expiry', expiryDate)

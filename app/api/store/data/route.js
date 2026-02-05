@@ -1,4 +1,4 @@
-import { getPrisma } from "@/lib/prisma";
+import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
 
 
@@ -7,7 +7,7 @@ import { NextResponse } from "next/server";
 
 export async function GET(request) {
     try {  
-        const prisma = getPrisma();
+        
         // Get store username from query params
         const { searchParams } = new URL(request.url);
         const username = searchParams.get('username').toLowerCase();

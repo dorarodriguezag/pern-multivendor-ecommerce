@@ -1,13 +1,13 @@
 import authSeller from "@/middlewares/authSeller";
 import { getAuth } from "@clerk/nextjs/server";
-import { getPrisma } from "@/lib/prisma";
+import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
 
 
 // Update seller order status
 export async function POST(request) {
     try {
-        const prisma = getPrisma();
+        
         const { userId } = getAuth(request);
         const storeId = await authSeller(userId);
 
@@ -33,7 +33,7 @@ export async function POST(request) {
 // Get all orders for a seller
 export async function GET(request) {
     try {
-        const prisma = getPrisma();
+        
         const { userId } = getAuth(request);
         const storeId = await authSeller(userId);
 

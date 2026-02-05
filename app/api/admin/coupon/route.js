@@ -1,13 +1,13 @@
 import authAdmin from "@/middlewares/authAdmin";
 import { getAuth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
-import { getPrisma } from "@/lib/prisma";
+import prisma from "@/lib/prisma";
 import { inngest } from "@/inngest/client";
 
 //Add new coupon
 export async function POST(request) {
     try {
-        const prisma = getPrisma();
+        
         const { userId } = getAuth(request)
         const isAdmin = await authAdmin(userId)
         
@@ -44,7 +44,7 @@ export async function POST(request) {
 
 export async function DELETE(request) {
     try {
-        const prisma = getPrisma();
+        
         const { userId } = getAuth(request)
         const isAdmin = await authAdmin(userId)
         
@@ -71,7 +71,7 @@ export async function DELETE(request) {
 
 export async function GET(request) {
     try {
-        const prisma = getPrisma();
+        
         const { userId } = getAuth(request)
         const isAdmin = await authAdmin(userId)
         

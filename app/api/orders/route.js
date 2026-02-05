@@ -1,4 +1,4 @@
-import { getPrisma } from "@/lib/prisma";
+import prisma from "@/lib/prisma";
 import { getAuth } from "@clerk/nextjs/server";
 import { PaymentMethod } from "@prisma/client";
 import { NextResponse } from "next/server";
@@ -7,7 +7,7 @@ import Stripe from "stripe";
 
 export async function POST(request) {
   try {
-        const prisma = getPrisma()
+        
         const { userId, has } = getAuth(request)
         if(!userId) {
             return NextResponse.json({ error: "not authorized" }, { status: 401 })
@@ -156,7 +156,7 @@ export async function POST(request) {
 //Get all orders for a user
 export async function GET(request) {
     try {
-        const prisma = getPrisma()
+        
         const { userId } = getAuth(request)
         const orders = await prisma.order.findMany({
             where: { userId, OR: [

@@ -1,11 +1,11 @@
-import { getPrisma } from "@/lib/prisma";
+import prisma from "@/lib/prisma";
 import { getAuth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 
 
 export async function POST(request) {
   try {
-        const prisma = getPrisma()
+        
         const { userId } = getAuth(request)
         const { orderId, productId, rating, review } = await request.json()
         const order = await prisma.order.findUnique({
@@ -54,7 +54,7 @@ export async function POST(request) {
 
 export async function GET(request) {
   try {
-        const prisma = getPrisma()
+        
         const { userId } = getAuth(request)
         if(!userId) {
             return NextResponse.json({ error: "Unauthorized" }, { status: 401 })

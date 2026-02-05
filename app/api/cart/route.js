@@ -1,11 +1,11 @@
-import { getPrisma } from "@/lib/prisma";
+import prisma from "@/lib/prisma";
 import { getAuth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 
 // Update user cart 
 export async function POST(request) {
     try {
-        const prisma = getPrisma();
+        
         const { userId } = getAuth(request)
         const { cart } = await request.json()
 
@@ -26,7 +26,7 @@ export async function POST(request) {
 // Get user cart 
 export async function GET(request) {
     try {
-        const prisma = getPrisma();
+        
         const { userId } = getAuth(request)
 
         const user = await prisma.user.findUnique({
