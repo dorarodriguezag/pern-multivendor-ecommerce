@@ -21,16 +21,18 @@ export async function POST(request) {
 
         if(couponCode) {
             coupon = await prisma.coupon.findUnique({
-            where: {
-                code: couponCode
-            }
+                where: {
+                    code: couponCode
+                }
             })
             if(!coupon){
             return NextResponse.json({error: "Coupon not found"}, {status: 400}) 
-        }
+            }
         }
 
-        if(couponCode & coupon.forNewUser) {
+        //Check if coupon is aplicable for new users
+
+        if(couponCode && coupon.forNewUser) {
             const userOrders = await prisma.order.findMany({
                 where: {
                     userId
@@ -44,9 +46,9 @@ export async function POST(request) {
         const isPlusMember = has({plan:'plus'})
 
         //Check if coupon is aplicable for members
-        if (couponCode & coupon.forMember) {
+        if (couponCode && coupon.forMember) {
 
-            if (!hasPlusPlan) {
+            if (!isPlusMember) {
                 return NextResponse.json({ error: "Coupon valid for members only" }, { status: 400 });
             }
         } 
@@ -60,7 +62,7 @@ export async function POST(request) {
             })
             const storeId = product.storeId
             if (!ordersByStore.has(storeId)) {
-            ordersByStore.set(storeId, [])
+                ordersByStore.set(storeId, [])
             }
             ordersByStore.get(storeId).push({ ...item, price: product.price })
         }
@@ -71,8 +73,8 @@ export async function POST(request) {
         let isShippingFeeAdded = false;
 
         //Create orders for each seller
-        for (const [storeId, storeItems] of ordersByStore.entries()) {
-            let total = selectUnfilteredCartesianItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+        for (const [storeId, sellerItems] of ordersByStore.entries()) {
+            let total = sellerItems.reduce((acc, item) => acc + (item.price * item.quantity), 0);
 
             if(couponCode){
                 total -= (total * coupon.discount) / 100
@@ -105,10 +107,10 @@ export async function POST(request) {
             ordersId.push(order.id)
         }
 
-        //clear the cart
-        await prisma.user.update()({
+       // clear the cart
+        await prisma.user.update({
             where: { id: userId },
-            data: { cart: [] }
+            data: { cart: {} }
         })
 
         return NextResponse.json({ message: "Order placed successfully"})   
