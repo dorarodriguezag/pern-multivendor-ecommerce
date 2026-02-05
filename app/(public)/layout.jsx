@@ -9,6 +9,7 @@ import { useUser } from "@clerk/nextjs";
 import { useAuth } from "@clerk/clerk-react";
 import { fetchCart, uploadCart } from "@/lib/features/cart/cartSlice";
 import { fetchAddress } from "@/lib/features/address/addressSlice";
+import { fetchUserRatings } from "@/lib/features/rating/ratingSlice";
 
 export default function PublicLayout({ children }) {
 
@@ -32,6 +33,7 @@ export default function PublicLayout({ children }) {
         if (user) {
             dispatch(uploadCart({getToken}) );
             dispatch(fetchAddress({getToken}) );
+            dispatch(fetchUserRatings({getToken}));
         }
     }, [cartItems]);
 
