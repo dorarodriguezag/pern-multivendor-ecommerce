@@ -69,7 +69,7 @@ export async function POST(request) {
             ordersByStore.get(storeId).push({ ...item, price: product.price })
         }
 
-        const ordersId = [];
+        const orderIds = [];
         let fullAmount = 0
 
         let isShippingFeeAdded = false;
@@ -106,7 +106,7 @@ export async function POST(request) {
                     }
                 }
             })
-            ordersId.push(order.id)
+            orderIds.push(order.id)
         }
 
     if(paymentMethod === 'STRIPE'){
@@ -129,7 +129,7 @@ export async function POST(request) {
             success_url: `${origin}/loading?nextUrl=orders`,    
             cancel_url: `${origin}/cart`,
             metadata: {
-                ordersId: ordersId.join(','),
+                orderIds: orderIds.join(','),
                 userId,
                 appId: 'gocart'
             }
