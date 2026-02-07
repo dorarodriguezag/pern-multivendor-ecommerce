@@ -1,3 +1,4 @@
+//server component
 import { categories } from "@/assets/assets";
 
 const CategoriesMarquee = () => {
