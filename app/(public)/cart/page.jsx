@@ -7,8 +7,12 @@ import { Trash2Icon } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Loading from "@/components/Loading";
 
-export default function Cart() {
+
+export default function Cart() {    
+
+    console.log('ESTOY EN CART');
 
     const currency = process.env.NEXT_PUBLIC_CURRENCY_SYMBOL || '$';
     
@@ -17,36 +21,47 @@ export default function Cart() {
 
     const dispatch = useDispatch();
 
-    const [cartArray, setCartArray] = useState([]);
-    const [totalPrice, setTotalPrice] = useState(0);
+    const isLoading = products.length === 0;
 
-    const createCartArray = () => {
-        setTotalPrice(0);
-        const cartArray = [];
-        for (const [key, value] of Object.entries(cartItems)) {
-            const product = products.find(product => product.id === key);
-            if (product) {
-                cartArray.push({
-                    ...product,
-                    quantity: value,
-                });
-                setTotalPrice(prev => prev + product.price * value);
-            }
-        }
-        setCartArray(cartArray);
-    }
+    const cartArray = Object.entries(cartItems)
+    .map(([productId, quantity]) => {     
+        const product = products.find(p => p.id === productId);
+        if (!product) return null;
+
+        return {
+            ...product,
+            quantity,
+        };
+    })
+    .filter(Boolean);
+
+    const totalPrice = cartArray.reduce(
+        (sum, item) => sum + item.price * item.quantity,
+        0
+    );
+
+    const isCartEmpty = !isLoading && cartArray.length === 0;
 
     const handleDeleteItemFromCart = (productId) => {
         dispatch(deleteItemFromCart({ productId }))
     }
 
-    useEffect(() => {
-        if (products.length > 0) {
-            createCartArray();
-        }
-    }, [cartItems, products]);
+    if (isLoading) {
+        return <Loading />;
+     }
 
-    return cartArray.length > 0 ? (
+    if (isCartEmpty) {
+        return (
+            <div className="min-h-[80vh] mx-6 flex items-center justify-center text-slate-400">
+            <h1 className="text-2xl sm:text-4xl font-semibold">
+                Your cart is empty
+            </h1>
+            </div>
+        );
+    }
+
+    return  (
+        
         <div className="min-h-screen mx-6 text-slate-800">
 
             <div className="max-w-7xl mx-auto ">
@@ -95,10 +110,6 @@ export default function Cart() {
                     <OrderSummary totalPrice={totalPrice} items={cartArray} />
                 </div>
             </div>
-        </div>
-    ) : (
-        <div className="min-h-[80vh] mx-6 flex items-center justify-center text-slate-400">
-            <h1 className="text-2xl sm:text-4xl font-semibold">Your cart is empty</h1>
         </div>
     )
 }
