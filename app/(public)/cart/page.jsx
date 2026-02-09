@@ -5,14 +5,11 @@ import PageTitle from "@/components/PageTitle";
 import { deleteItemFromCart } from "@/lib/features/cart/cartSlice";
 import { Trash2Icon } from "lucide-react";
 import Image from "next/image";
-import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Loading from "@/components/Loading";
 
 
 export default function Cart() {    
-
-    console.log('ESTOY EN CART');
 
     const currency = process.env.NEXT_PUBLIC_CURRENCY_SYMBOL || '$';
     
