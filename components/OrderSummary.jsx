@@ -56,7 +56,7 @@ const OrderSummary = ({ totalPrice, items }) => {
                 return toast('Please login to place and order')
             }
             if(!selectedAddress) {
-                return toast('Please select and address')
+                return toast('Please select an address')
             }
             const token = await getToken();
 
